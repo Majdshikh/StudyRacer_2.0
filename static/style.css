@@ -1,0 +1,41 @@
+body {
+    font-family: Helvetica, sans-serif;
+    background-image: url(toppng.com-checkered-flag-facebook-banner-1921x411.png) !important;
+    background-size: 1800px 140px;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-blend-mode: color-dodge;
+}
+
+#headerbg {
+    background-color: rgba(45, 45, 45, 0.514);
+}
+#main {
+    background-color: rgb(227, 227, 227) !important;
+}
+
+#header-study {
+    color: #8cce6e;
+}
+
+#header-racer {
+    color: #df5959;
+}
+
+#button-create {
+    background-color: #8cce6e;
+    color: black;
+    border-color: #304826;
+}
+
+#button-easy {
+    background-color: #8cce6e;
+    color: black;
+    border-color: #304826;
+}
+
+#button-hard {
+    background-color: #df5959;
+    color: black;
+    border-color: #612828;
+}
