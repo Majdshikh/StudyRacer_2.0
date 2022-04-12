@@ -11,7 +11,7 @@
     </head>
 
     <body class="bg-dark d-flex flex-column h-100">
-        <header id="headerbg" class="p-3 mb-3 border-bottom">
+        <header id="headerbg" class="p-3 mb-3">
             <div class="container">
                 <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                     <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
@@ -20,10 +20,12 @@
             
                     <ul class="nav col-12 col-lg-auto me-lg-auto justify-content-center">
                         <li><a href="#" class="nav-link px-2 link-warning">Home</a></li>
-                        <li><a href="#" class="nav-link px-2 link-light">FAQs</a></li>
-                        <li><a href="#" class="nav-link px-2 link-light">About</a></li>
                         <li><a href="#" class="nav-link px-2 link-light">Instructions</a></li>
                     </ul>
+
+                    <div id="header-title" class="text-center me-auto">
+                        <h2 id="header-study" class="d-inline fw-bold fs-1">Study</h2><h2 id="header-racer" class="d-inline fw-bold fs-1">Racer</h2></h2>
+                    </div>
             
                     <form class="col-lg-auto my-3 me-3">
                         <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
@@ -44,10 +46,8 @@
 
                     % else:
                     <div class="text-end">
-                           
                         <a type="button" class="btn btn-outline-light me-2" href="/views/login.html">Login</a> 
                         <a type="button" class="btn btn-warning" href="/views/reg.html">Sign-up</a>
-
                     </div>
                     % end
                 </div>
@@ -55,116 +55,57 @@
         </header>
         
         <main class="container-md text-center flex-shrink-0">
-            <div class="container col-lg-8">
-                <div id="about-this-page" class="py-4 text-white">
-                    <div id="header-title" class="mb-3">
-                        <h2 class="d-inline">Welcome to <h2 id="header-study" class="d-inline">Study</h2><h2 id="header-racer" class="d-inline">Racer!</h2></h2>
+
+            % if userLoggedIn == True:
+            <!--Scrollable modal-->
+            <div class="modal fade text-white text-start" id="exampleModalScrollable" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" style="display: none;" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content bg-dark">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalScrollableTitle">Create custom race</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="/racetext/save" method="POST">
+                                <div class="mb-3">
+                                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Name of the article or text...">
+                                    <label for="exampleFormControlInput1" class="form-label text-muted m-1">Add a title to your race</label>
+                                </div>
+                                <div>
+                                    <textarea id="input" class="form-control" rows="15" maxlength="3500" name="userRaceText" placeholder="Paste your text here..." spellcheck="false"></textarea>
+                                </div>
+                                <small class="text-muted">Max 3500 characters.</small>
+                                <div id="custom-race-modal" class="modal-footer">
+                                    <input type="submit" id="button-custom-race" class="btn btn-success m-0" value="Start race">                    
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            % if userLoggedIn == True:
-            <article class="container col-lg-10 mt-4 border p-5">
-                <div class="container d-flex justify-content-between text-white">
-                    <div class="col-5 text-start d-flex row">
-                        <h3>Custom race</h3>
-                        <p>Create your own race. Paste parts of an article or your own text to study and learn while getting faster at typing.</p>
-                        <div class="my-2 text-muted align-self-end row justify-content-start">
-                            <div>
-                                <a id="button-custom" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable">Create race</a>
-                                <!-- Scrollable modal -->
-                                <div class="modal fade text-white" id="exampleModalScrollable" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" style="display: none;" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-scrollable">
-                                        <div class="modal-content bg-dark">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalScrollableTitle">Create custom race</h5>
-                                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form action="/racetext/save" method="POST">
-                                                    <div class="mb-3">
-                                                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Name of the article or text...">
-                                                        <label for="exampleFormControlInput1" class="form-label text-muted m-1">Add a title to your race</label>
-                                                    </div>
-                                                    <div>
-                                                        <textarea id="input" class="form-control" rows="15" maxlength="3500" name="userRaceText" placeholder="Paste your text here..." spellcheck="false"></textarea>
-                                                    </div>
-                                                    <small class="text-muted">Max 3500 characters.</small>
-                                                    <div id="custom-race-modal" class="modal-footer">
-                                                        <input type="submit" id="button-custom-race" class="btn btn-success m-0" value="Start race">                    
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div>
-
-                    <div class="vr"></div>
-
-                    <div class="col-5 text-end d-flex row justify-content-end">
-                        <h3>Random race</h3>
-                        <p>In this mode you just type as fast as you can.</p>
-                        <div class="my-2 text-muted align-self-end row">
-                            <small class="mb-1">Choose your difficulty</small>
-                            <div class="d-inline-flex justify-content-end">
-                                <a id="button-easy" href="#" type="button" class="btn btn-success ms-2">Easy</a>
-                                <a id="button-medium" href="#" type="button" class="btn btn-warning ms-2 ">Medium</a>
-                                <a id="button-hard" href="#" type="button" class="btn btn-danger ms-2">Hard</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <article class="container col-lg-10 mt-4 border p-5">
+            <article class="container col-lg-10 p-5">
                 <div class="d-flex justify-content-between text-white">
                     
-                    <div class="flip-card">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front border rounded">
-                                <img src="#" alt="Avatar" style="">
-                            </div>
-                            <div class="flip-card-back col-5 text-start d-flex row gx-0 py-2 px-4 border rounded">
-                                <h3>Custom race</h3>
-                                <p>Create your own race. Paste parts of an article or your own text to study and learn while getting faster at typing.</p>
-                                <div class="my-2 text-muted align-self-end">
-                                    <div>
-                                        <a id="button-custom" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable">Create race</a>
-                                        <!-- Scrollable modal -->
-                                        <div class="modal fade text-white" id="exampleModalScrollable" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" style="display: none;" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-scrollable">
-                                                <div class="modal-content bg-dark">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalScrollableTitle">Create custom race</h5>
-                                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form action="/racetext/save" method="POST">
-                                                            <div class="mb-3">
-                                                                <label for="exampleFormControlInput1" class="form-label">Add a title to your race</label>
-                                                                <input type="input" class="form-control" id="exampleFormControlInput1" placeholder="Name of the article or text...">
-                                                            </div>
-                                                            <div>
-                                                                <textarea id="input" class="form-control" rows="15" maxlength="3500" name="userRaceText" placeholder="Paste your text here..." spellcheck="false"></textarea>
-                                                            </div>
-                                                            <small class="text-muted">Max 3500 characters.</small>
-                                                        </form>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <input type="submit" id="button-custom-race" class="btn btn-success" value="Start race">                    
-                                                    </div>
-                                                </div>
-                                            </div>
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front border rounded">
+                                    <img src="#" alt="Avatar" style="">
+                                </div>
+                                <div class="flip-card-back col-5 text-start d-flex row gx-0 py-2 px-4 border rounded">
+                                    <h3>Custom race</h3>
+                                    <p>Create your own race. Paste parts of an article or your own text to study and learn while getting faster at typing.</p>
+                                    <div class="my-2 text-muted align-self-end">
+                                        <div>
+                                            <a id="button-custom" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable">Create race</a>
+                                            
+                                            
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    
 
                     <div class="vr"></div>
 
@@ -261,7 +202,7 @@
                     </div>
                 </div>
             </article>
-            %end
+            % end
         </main>
         
         <footer id="footer-bottom" class="footer mt-auto py-1 border-top">
