@@ -43,7 +43,7 @@
 
                     % else:
                     <div class="text-end">
-                        <a type="button" class="btn btn-outline-light me-2" href="/views/login.html">Login</a> 
+                        <a type="button" class="btn btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#loginModalScrollable">Login</a> 
                         <a type="button" class="btn btn-warning" href="/views/reg.html">Sign-up</a>
                     </div>
                     % end
@@ -55,7 +55,7 @@
 
             % if userLoggedIn == True:
             <!--Scrollable modal-->
-            <div class="modal fade text-white text-start" id="exampleModalScrollable" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" style="display: none;" aria-hidden="true">
+            <div class="modal fade text-white text-start" id="customModalScrollable" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" style="display: none;" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-scrollable">
                     <div class="modal-content bg-dark">
                         <div class="modal-header">
@@ -94,7 +94,7 @@
                                     <p>Create your own race. Paste parts of an article or your own text to study and learn while getting faster at typing.</p>
                                     <div class="my-2 text-muted align-self-end">
                                         <div>
-                                            <a id="button-custom" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable">Create race</a>
+                                            <a id="button-custom" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#customModalScrollable">Create race</a>
                                         </div>
                                     </div>
                                 </div>
@@ -127,6 +127,23 @@
             </article>
             
             % else:
+            <!--Scrollable modal-->
+            <div class="modal fade text-white text-start" id="loginModalScrollable" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" style="display: none;" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content bg-dark">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalScrollableTitle">Log in</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+
+                            <!-- INLOGGNING FORMS -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <article class="container col-lg-10 p-5">
                 <div class="d-flex justify-content-between text-white">
                     
@@ -139,7 +156,7 @@
                                 <h3>Custom race</h3>
                                 <p>Create your own race. Insert text from an article or your notes to study and learn while getting faster at typing.</p>
                                 <div class="my-2 text-muted align-self-end row justify-content-start">
-                                    <small class="mb-1"><a href="#">Log in</a> to create a custom race.</small>
+                                    <small class="mb-1"><a href="#" data-bs-toggle="modal" data-bs-target="#loginModalScrollable">Log in</a> to create a custom race.</small>
                                     <small class="mt-1 ">No account? Sign up <a href="#">here</a></small>
                                 </div>
                             </div>
