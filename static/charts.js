@@ -1,3 +1,10 @@
+
+let totalMin = localStorage.getItem('storeMin');
+let totalSec = localStorage.getItem('storeSec');
+let totalWords = localStorage.getItem('storeWords');
+let calculatedTime = totalMin * 60 + + totalSec;
+let wordsPerMinute = Math.trunc(totalWords / (calculatedTime / 60));
+
 const ctxAcc = document.getElementById('myChartAcc');
 const myChartAcc = new Chart(ctxAcc, {
     type: 'bar',
@@ -22,7 +29,8 @@ const myChartAcc = new Chart(ctxAcc, {
     options: {
         scales: {
             y: {
-                min: 40,
+                min: 60,
+                max: 100,
             }
         },
         plugins: {
@@ -36,7 +44,7 @@ const myChartAcc = new Chart(ctxAcc, {
             },
             legend: {
                 labels: {
-                  display: false,
+                  display: false
                 }
             }
         },
@@ -53,7 +61,7 @@ const myChartWpm = new Chart(ctxWpm, {
         labels: ['This race', 'Your avg.', 'World avg.'],
         datasets: [{
             label: 'Words Per Minute',
-            data: [89, 81, 76],
+            data: [wordsPerMinute, 81, 76],
             backgroundColor: [
                 'rgba(75, 192, 192, 0.2)',
                 'rgba(153, 102, 255, 0.2)',

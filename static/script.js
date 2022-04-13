@@ -13,12 +13,6 @@ let int = null;
 
 // Retrieve the object from storage
 
-let totalMin = localStorage.getItem('storeMin');
-let totalSec = localStorage.getItem('storeSec');
-let totalWords = localStorage.getItem('storeWords');
-let calculatedTime = totalMin * 60 + + totalSec;
-let wordsPerMinute = Math.trunc(totalWords / (calculatedTime / 60));
-
 
 var strokeCount = 0;
 
@@ -72,34 +66,12 @@ function submit_button_save() {
 	localStorage.setItem('storeWords', JSON.stringify(storeTotalWords));
 }
 
-document.getElementById('input').addEventListener('keydown', event=>{
-	if(event.code === 'Space'){
-		countWords();
-
-	}
-});
-
-
 function total_time(){
 // Denna funktionen ska presentera tiden spenderad i racet på resultatsidan
 	totalMin.innerHTML = localStorage.getItem('appendMin');
 
 };
 
-const messageEle = document.getElementById('input');
-const counterEle = document.getElementById('count');
-
-messageEle.addEventListener('input', function (e) {
-    const target = e.target;
-
-    // Get the `maxlength` attribute
-    const maxLength = target.getAttribute('maxlength');
-
-    // Count the current number of characters
-    const currentLength = target.value.length;
-
-    counterEle.innerHTML = `${currentLength}`;
-});
 
 function countWords() {
 
@@ -174,40 +146,3 @@ function start_timer(){
 //function clear_wpm() {
 //	document.getElementById("resultwpm").innerHTML = undefined;
 //}
-
-// Check if last word is equal to the last word of the text and the amount of words are the same, 
-// if it is, submit the text. 
-messageEle.addEventListener('input', function (e) {
-	console.log("din text: " + messageEle.value)
-	// Split the written text into an array, space makes new arrayitem
-	let writtenTextArray = messageEle.value.split(" ")
-	// Check the last word of the array
-	let writtenTextLastWord = writtenTextArray.pop();
-	// count the amount of arrayitems
-	const writtenTextLength = writtenTextArray.length;
-
-	console.log(writtenTextArray)
-	console.log(writtenTextLastWord)
-	console.log("length input: " + writtenTextLength)
-
-	// get the text the user is supposed to race
-	const raceText = document.getElementById("text").value
-	// Split the text into an array
-	const raceTextArray = raceText.split(" ");
-	// Check the last word of the array
-	const raceTextLastWord = raceTextArray.pop();
-	// Count the amount of arrayitems
-	const raceTextLength = raceTextArray.length;
-	console.log(raceTextArray);
-	console.log (raceTextLastWord);
-	console.log("length text: " + raceTextLength)
-
-	// Checks if the last written word is equal to the last word of the race, and if the number of arrayitems are
-	// the same, if this is the case, finish the race.
-	if (writtenTextLastWord === raceTextLastWord && writtenTextLength === raceTextLength) {
-		document.forms["myForm"].submit();
-	}
-}); 
-
-// If user input is correct, mark the letter green, if incorrect, mark the letter red
-function mark_letters(){}
